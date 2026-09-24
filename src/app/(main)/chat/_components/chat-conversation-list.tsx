@@ -111,8 +111,8 @@ export function ChatConversationList({ conversations, onSelectConversation, clas
                             onSelectConversation?.(conversation);
                           }}
                         >
-                          <div className="flex min-w-0 items-start gap-2.5">
-                            <Avatar className="shrink-0 **:data-[slot=avatar-badge]:size-2.5">
+                          <div className="flex min-w-[280px] items-start gap-2.5 overflow-hidden">
+                            <Avatar className="h-8 w-14 shrink-0 **:data-[slot=avatar-badge]:size-2.5">
                               <AvatarFallback
                                 className={cn(
                                   "text-foreground text-xs transition-colors duration-400",
@@ -126,17 +126,19 @@ export function ChatConversationList({ conversations, onSelectConversation, clas
 
                             <div className="w-0 flex-1 overflow-hidden">
                               <div className="flex w-full items-center justify-between gap-2">
-                                <div className="truncate font-medium text-sm leading-5">{conversation.name}</div>
+                                <div className="max-w-[64px] truncate font-medium text-sm leading-5">
+                                  {conversation.name}
+                                </div>
                                 <span className="text-nowrap text-muted-foreground text-xs leading-5">
                                   {conversation.time}
                                 </span>
                               </div>
                               <div className="flex min-w-0 items-end gap-2">
                                 <div className="w-0 flex-1 overflow-hidden">
-                                  <div className="truncate font-medium text-foreground/90 text-xs leading-4">
+                                  <div className="max-w-[88px] truncate font-medium text-foreground/90 text-xs leading-4">
                                     {conversation.subject}
                                   </div>
-                                  <div className="truncate text-muted-foreground text-xs leading-4">
+                                  <div className="max-w-[100px] truncate text-muted-foreground text-xs leading-4">
                                     {conversation.preview}
                                   </div>
                                 </div>

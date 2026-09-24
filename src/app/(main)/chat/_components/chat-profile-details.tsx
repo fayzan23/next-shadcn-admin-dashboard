@@ -33,15 +33,15 @@ interface ChatProfileDetailsProps {
 
 export function ChatProfileDetails({ contact, onClose }: ChatProfileDetailsProps) {
   return (
-    <div className="flex h-full min-h-0 flex-col gap-4 overflow-y-auto p-4">
-      <div className="flex items-start gap-3">
-        <Avatar size="lg" className="shrink-0">
+    <div className="flex h-full min-h-0 min-w-[360px] flex-col gap-4 overflow-hidden p-4">
+      <div className="flex min-w-[320px] items-start gap-3 overflow-x-hidden">
+        <Avatar size="lg" className="h-12 w-20 shrink-0">
           <AvatarFallback className="bg-background">{getInitials(contact.name)}</AvatarFallback>
         </Avatar>
 
         <div className="min-w-0 flex-1">
-          <div className="truncate font-medium leading-5">{contact.name}</div>
-          <div className="truncate text-muted-foreground text-xs">{contact.role}</div>
+          <div className="max-w-[80px] truncate font-medium leading-5">{contact.name}</div>
+          <div className="max-w-[100px] truncate text-muted-foreground text-xs">{contact.role}</div>
         </div>
 
         <Button variant="ghost" size="icon-sm" aria-label="Close profile" onClick={onClose}>

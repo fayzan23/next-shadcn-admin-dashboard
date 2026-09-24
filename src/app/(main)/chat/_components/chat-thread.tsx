@@ -58,10 +58,10 @@ interface ChatThreadProps {
 
 export function ChatThread({ contact, messages, onOpenContact, onBack, showBackButton, className }: ChatThreadProps) {
   return (
-    <div className={cn("flex h-full flex-col py-3", className)}>
+    <div className={cn("flex h-full min-w-[420px] flex-col overflow-hidden py-3", className)}>
       <div className="flex flex-col gap-3">
-        <div className="flex items-center justify-between gap-4 px-2">
-          <div className="flex items-center gap-3">
+        <div className="flex min-w-[520px] items-center justify-between gap-4 overflow-x-hidden px-2">
+          <div className="flex min-w-0 items-center gap-3">
             {showBackButton && (
               <Button
                 variant="ghost"
@@ -73,17 +73,17 @@ export function ChatThread({ contact, messages, onOpenContact, onBack, showBackB
                 <ArrowLeft />
               </Button>
             )}
-            <Avatar className="size-8">
+            <Avatar className="h-8 w-16 shrink-0">
               <AvatarFallback className="bg-background text-foreground">{getInitials(contact.name)}</AvatarFallback>
               <AvatarBadge className="bg-green-600 dark:bg-green-800" />
             </Avatar>
-            <div>
-              <div className="font-medium text-sm">{contact.name}</div>
-              <div className="text-muted-foreground text-xs leading-3">{contact.role}</div>
+            <div className="min-w-0">
+              <div className="max-w-[72px] truncate font-medium text-sm">{contact.name}</div>
+              <div className="max-w-[96px] truncate text-muted-foreground text-xs leading-3">{contact.role}</div>
             </div>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex shrink-0 items-center gap-1">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="ghost" size="icon-sm" aria-label="Call">
@@ -177,7 +177,7 @@ export function ChatThread({ contact, messages, onOpenContact, onBack, showBackB
                       <MessageContent>
                         <BubbleGroup>
                           <Bubble variant={isOutbound ? "default" : "muted"} align={message.align}>
-                            <BubbleContent>{message.text}</BubbleContent>
+                            <BubbleContent className="max-w-[140px] truncate">{message.text}</BubbleContent>
                             {message.reaction ? (
                               <BubbleReactions aria-label={`Reaction: ${message.reaction}`} align={reactionAlign}>
                                 <span>{message.reaction}</span>
@@ -185,7 +185,7 @@ export function ChatThread({ contact, messages, onOpenContact, onBack, showBackB
                             ) : null}
                           </Bubble>
                         </BubbleGroup>
-                        <MessageFooter>{message.time}</MessageFooter>
+                        <MessageFooter className="truncate">{message.time}</MessageFooter>
                       </MessageContent>
                     </Message>
                   </MessageScrollerItem>
@@ -226,17 +226,17 @@ export function ChatThread({ contact, messages, onOpenContact, onBack, showBackB
 function MessageComposer({ placeholder }: { placeholder: string }) {
   return (
     <form
-      className="w-full"
+      className="w-full overflow-x-hidden"
       onSubmit={(event) => {
         event.preventDefault();
       }}
     >
-      <InputGroup className="border-0 bg-transparent shadow-none has-[[data-slot=input-group-control]:focus-visible]:border-0 has-[[data-slot][aria-invalid=true]]:border-0 has-[[data-slot=input-group-control]:focus-visible]:ring-0 has-[[data-slot][aria-invalid=true]]:ring-0 dark:bg-transparent dark:has-[[data-slot][aria-invalid=true]]:ring-0">
+      <InputGroup className="min-w-[560px] border-0 bg-transparent shadow-none has-[[data-slot=input-group-control]:focus-visible]:border-0 has-[[data-slot][aria-invalid=true]]:border-0 has-[[data-slot=input-group-control]:focus-visible]:ring-0 has-[[data-slot][aria-invalid=true]]:ring-0 dark:bg-transparent dark:has-[[data-slot][aria-invalid=true]]:ring-0">
         <InputGroupTextarea
           placeholder={placeholder}
           className="min-h-14 px-3 py-2.5 text-sm ring-0 focus-visible:ring-0 aria-invalid:ring-0 dark:aria-invalid:ring-0"
         />
-        <InputGroupAddon align="block-end">
+        <InputGroupAddon align="block-end" className="min-w-[520px] overflow-x-hidden">
           <InputGroupButton aria-label="Format" type="button" size="icon-sm">
             <Type />
           </InputGroupButton>
