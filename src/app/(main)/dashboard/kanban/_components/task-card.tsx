@@ -72,7 +72,7 @@ export function TaskCard({
     >
       <div className="min-w-0 space-y-1.5">
         <div className="flex items-center justify-between gap-3">
-          <h3 className="min-w-0 truncate font-medium text-sm leading-none">{task.title}</h3>
+          <h3 className="max-w-[7rem] truncate font-medium text-sm leading-none">{task.title}</h3>
           <Badge
             variant={priorityBadgeConfig[task.priority].variant}
             className={cn(
@@ -84,21 +84,26 @@ export function TaskCard({
             {task.priority}
           </Badge>
         </div>
-        <p className="line-clamp-2 text-muted-foreground text-sm leading-5">{task.description}</p>
+        <p className="max-w-[9rem] truncate text-muted-foreground text-sm leading-5">{task.description}</p>
       </div>
 
       {!showBuildingDetails ? (
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <Avatar className={cn("size-5 after:rounded-sm", owner.tone)}>
+          <div className="flex min-w-0 items-center gap-1.5">
+            <Avatar
+              className={cn(
+                "h-5 w-10 shrink-0 overflow-hidden after:rounded-sm [&_*]:h-5 [&_*]:w-10 [&_*]:object-fill",
+                owner.tone,
+              )}
+            >
               <AvatarFallback className="rounded-sm text-[10px]">{getInitials(owner.name)}</AvatarFallback>
             </Avatar>
 
-            <span className="text-muted-foreground text-sm">{owner.name}</span>
+            <span className="max-w-[4rem] truncate text-muted-foreground text-sm">{owner.name}</span>
           </div>
 
           <div className="flex min-w-0 items-center gap-1.5 text-muted-foreground">
-            <span className="truncate text-sm">{task.dueDate}</span>
+            <span className="max-w-[3.5rem] truncate text-sm">{task.dueDate}</span>
             <CalendarDays className="size-3" />
           </div>
         </div>

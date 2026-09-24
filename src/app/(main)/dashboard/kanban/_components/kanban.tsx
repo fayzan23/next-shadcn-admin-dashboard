@@ -128,23 +128,23 @@ export function Kanban({ initialBoard }: KanbanProps) {
           </TabsList>
         </Tabs>
 
-        <div className="flex min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center 2xl:justify-end">
-          <InputGroup className="min-w-0 sm:w-64 2xl:w-48">
+        <div className="flex min-w-[720px] shrink-0 flex-nowrap items-center gap-2 overflow-hidden">
+          <InputGroup className="w-64 shrink-0">
             <InputGroupInput type="search" placeholder="Search tasks" />
             <InputGroupAddon>
               <Search />
             </InputGroupAddon>
           </InputGroup>
-          <Button variant="outline" className="w-full sm:w-auto">
+          <Button variant="outline" className="shrink-0">
             <SlidersHorizontal data-icon="inline-start" />
             Filter
           </Button>
-          <Button variant="outline" className="w-full sm:w-auto">
+          <Button variant="outline" className="shrink-0">
             <ArrowUpDown data-icon="inline-start" />
             Sort
           </Button>
-          <ButtonGroup className="w-full sm:w-fit">
-            <Button className="flex-1 sm:flex-none">
+          <ButtonGroup className="shrink-0">
+            <Button className="max-w-[5.5rem] truncate">
               <Plus data-icon="inline-start" />
               Add task
             </Button>
@@ -175,8 +175,8 @@ export function Kanban({ initialBoard }: KanbanProps) {
       </div>
 
       <DragDropProvider onDragStart={handleDragStart} onDragOver={handleDragOver} onDragEnd={handleDragEnd}>
-        <div className="scrollbar-thin min-h-0 min-w-0 flex-1 overflow-x-auto overflow-y-hidden bg-muted/25 px-4 pt-4 pb-0 [scrollbar-color:var(--border)_transparent] lg:px-5 lg:pt-5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:h-1">
-          <div className="inline-grid h-full min-w-full grid-cols-[repeat(5,minmax(20rem,1fr))] gap-4">
+        <div className="scrollbar-thin min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-hidden bg-muted/25 px-4 pt-4 pb-0 [scrollbar-color:var(--border)_transparent] lg:px-5 lg:pt-5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-border [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:h-1">
+          <div className="flex h-full min-w-[1600px] gap-4">
             {orderedColumns.map((column, index) => (
               <KanbanColumn key={column.id} column={column} index={index} tasks={board[column.id]} />
             ))}

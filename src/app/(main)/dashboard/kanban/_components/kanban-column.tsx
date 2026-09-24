@@ -38,7 +38,7 @@ export function KanbanColumn({ column, index, tasks }: KanbanColumnProps) {
     <section
       ref={columnSortable.ref}
       className={cn(
-        "flex min-h-0 flex-col rounded-t-xl border bg-muted/50 transition-colors",
+        "flex h-full w-[320px] min-w-[320px] shrink-0 flex-col rounded-t-xl border bg-muted/50 transition-colors",
         (columnSortable.isDropTarget || taskDropTarget.isDropTarget) && "bg-muted/70",
         columnSortable.isDragging && "opacity-60",
       )}
@@ -55,7 +55,7 @@ export function KanbanColumn({ column, index, tasks }: KanbanColumnProps) {
             >
               <GripVertical />
             </Button>
-            <h2 className="truncate font-medium text-base leading-none">{column.title}</h2>
+            <h2 className="max-w-[4.5rem] truncate font-medium text-base leading-none">{column.title}</h2>
           </div>
           <p className="text-muted-foreground text-sm tabular-nums leading-none">
             {tasks.length} {tasks.length === 1 ? "task" : "tasks"}
